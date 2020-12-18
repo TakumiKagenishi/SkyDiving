@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d06ea0e0fb59204b881776231051b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 8762099337994326229}
+  playerController: {fileID: 8762099337994326234}
 --- !u!114 &1146467190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 1157120057}
   m_Layer: 4
   m_Name: WaterProDaytime
-  m_TagString: Untagged
+  m_TagString: Water
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2874,6 +2874,7 @@ GameObject:
   - component: {fileID: 8762099337984918797}
   - component: {fileID: 8762099337994326230}
   - component: {fileID: 8762099337994326232}
+  - component: {fileID: 8762099337994326234}
   m_Layer: 0
   m_Name: penguin
   m_TagString: Untagged
@@ -2895,7 +2896,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &8762099337994326231
 GameObject:
@@ -2944,6 +2945,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8762099337994326234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762099337994326229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d62f5be84f228fb479238f526b11fd93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  fallSpeed: 15
+  inWater: 0
+  splashEffectPrefab: {fileID: 0}
 --- !u!1 &8762099337994326235
 GameObject:
   m_ObjectHideFlags: 0

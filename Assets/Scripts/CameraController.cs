@@ -5,20 +5,25 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject playerObj;
+    private PlayerController playerController;
     private Vector3 offset;
     // Start is called before the first frame update
     void Start()
     {
-        offset = transform.position - playerObj.transform.position;
+        offset = transform.position - playerController.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerObj != null)
+        if(playerController.inWater == true)
         {
-            transform.position = playerObj.transform.position + offset;
+            return;
+        }
+
+        if(playerController != null)
+        {
+            transform.position = playerController.transform.position + offset;
         }
     }
 }
