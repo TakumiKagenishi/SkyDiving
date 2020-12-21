@@ -484,7 +484,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.6, y: 2.7, z: 1.6}
-  m_Center: {x: 0, y: -1.5, z: 0}
+  m_Center: {x: 0, y: -1.2, z: 0}
 --- !u!1 &1157219990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2960,7 +2960,9 @@ MonoBehaviour:
   moveSpeed: 10
   fallSpeed: 15
   inWater: 0
-  splashEffectPrefab: {fileID: 0}
+  splashEffectPrefab: {fileID: 1722726733478836, guid: c1c88308ebb5d2541a282905b854ee4c,
+    type: 3}
+  splashSE: {fileID: 8300000, guid: ce080110983b8fd439507b3ee1048eae, type: 3}
 --- !u!1 &8762099337994326235
 GameObject:
   m_ObjectHideFlags: 0
