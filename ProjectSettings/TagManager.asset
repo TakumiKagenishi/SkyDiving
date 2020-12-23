@@ -7,6 +7,7 @@ TagManager:
   - Shootable
   - Undefined
   - Water
+  - FlowerCircle
   layers:
   - Default
   - TransparentFX
