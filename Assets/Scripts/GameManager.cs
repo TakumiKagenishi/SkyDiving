@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private Transform goal;
+
+    [SerializeField]
+    private Text txtDistance;
 
     private float distance;
 
@@ -28,11 +32,14 @@ public class GameManager : MonoBehaviour
         }
         
         distance = player.transform.position.y - goal.transform.position.y;
-        Debug.Log(distance.ToString("F2"));
+        //Debug.Log(distance.ToString("F2"));
+
+        txtDistance.text = distance.ToString("F2");
 
         if (distance <= 0)
         {
             isGoal = true;
+            txtDistance.text = 0.ToString("F2");
         }
     }
 }
