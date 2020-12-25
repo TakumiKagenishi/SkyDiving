@@ -12,11 +12,19 @@ public class PlayerController : MonoBehaviour
     public float fallSpeed;
     [Header("着水判定用, trueなら着水済")]
     public bool inWater;
+    public enum AttitudeType
+    {
+        Straight,
+        Prone,
+    }
+    [Header("現在のキャラの姿勢")]
+    public AttitudeType attitudeType;
     private Rigidbody rb;
     private float x;
     private float z;
     private Vector3 straightRotation = new Vector3(180, 0, 0);
     private int score;
+    private Vector3 proneRotation = new Vector3(-90, 0, 0);
     [SerializeField, Header("水しぶきのエフェクト")]
     private GameObject splashEffectPrefab = null;
     [SerializeField, Header("水しぶきのSE")]
@@ -29,6 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         transform.eulerAngles = straightRotation;
+        attitudeType = AttitudeType.Straight;
     }
 
     // Update is called once per frame
@@ -73,5 +82,34 @@ public class PlayerController : MonoBehaviour
         rb.isKinematic = true;
         transform.eulerAngles = new Vector3(-30, 180, 0);
         transform.DOMoveY(4.7f, 1.0f);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            ChangeAttitude();
+        }
+    }
+
+    /// <summary>
+    /// 姿勢の変更
+    /// </summary>
+    private void ChangeAttitude()
+    {
+        switch(attitudeType)
+        {
+            case AttitudeType.Straight:
+                attitudeType = AttitudeType.Prone;
+                transform.DORotate(proneRotation, 0.25f, RotateMode.WorldAxisAdd);
+                rb.drag = 25.0f;
+                break;
+
+            case AttitudeType.Prone:
+                attitudeType = AttitudeType.Straight;
+                transform.DORotate(straightRotation, 0.25f);
+                rb.drag = 0f;
+                break;
+        }
     }
 }
