@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     private AudioClip splashSE = null;
     [SerializeField]
     private Text txtScore;
+    [SerializeField]
+    private Button btnChangeAttitude;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         transform.eulerAngles = straightRotation;
         attitudeType = AttitudeType.Straight;
+        btnChangeAttitude.onClick.AddListener(ChangeAttitude);
     }
 
     // Update is called once per frame
@@ -103,12 +106,14 @@ public class PlayerController : MonoBehaviour
                 attitudeType = AttitudeType.Prone;
                 transform.DORotate(proneRotation, 0.25f, RotateMode.WorldAxisAdd);
                 rb.drag = 25.0f;
+                btnChangeAttitude.transform.GetChild(0).DORotate(new Vector3(0, 0, 180), 0.25f);
                 break;
 
             case AttitudeType.Prone:
                 attitudeType = AttitudeType.Straight;
                 transform.DORotate(straightRotation, 0.25f);
                 rb.drag = 0f;
+                btnChangeAttitude.transform.GetChild(0).DORotate(new Vector3(0, 0, 90), 0.25f);
                 break;
         }
     }
