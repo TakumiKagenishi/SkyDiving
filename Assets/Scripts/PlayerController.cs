@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 straightRotation = new Vector3(180, 0, 0);
     private int score;
     private Vector3 proneRotation = new Vector3(-90, 0, 0);
+    private float attitudeTimer;
+    private float chargeTime = 2.0f;
     [SerializeField, Header("水しぶきのエフェクト")]
     private GameObject splashEffectPrefab = null;
     [SerializeField, Header("水しぶきのSE")]
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private Text txtScore;
     [SerializeField]
     private Button btnChangeAttitude;
+    [SerializeField]
+    private Image imgGauge;
 
     // Start is called before the first frame update
     void Start()
@@ -92,6 +96,26 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             ChangeAttitude();
+        }
+
+        if(attitudeType == AttitudeType.Straight)
+        {
+            attitudeTimer += Time.deltaTime;
+            imgGauge.DOFillAmount(attitudeTimer / chargeTime, 0.1f);
+            if(attitudeTimer >= chargeTime)
+            {
+                attitudeTimer = chargeTime;
+            }
+        }
+
+        if(attitudeType == AttitudeType.Prone)
+        {
+            attitudeTimer -= Time.deltaTime;
+            imgGauge.DOFillAmount(attitudeTimer / chargeTime, 0.1f);
+            if(attitudeTimer <= 0)
+            {
+                attitudeTimer = 0;
+            }
         }
     }
 
