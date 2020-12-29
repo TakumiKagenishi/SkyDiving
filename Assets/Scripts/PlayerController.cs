@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private float attitudeTimer;
     private float chargeTime = 2.0f;
     private bool isCharge;
+    private Animator anim;
     [SerializeField, Header("水しぶきのエフェクト")]
     private GameObject splashEffectPrefab = null;
     [SerializeField, Header("水しぶきのSE")]
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         attitudeType = AttitudeType.Straight;
         btnChangeAttitude.onClick.AddListener(ChangeAttitude);
         btnChangeAttitude.interactable = false;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -114,7 +116,7 @@ public class PlayerController : MonoBehaviour
                 isCharge = true;
                 btnChangeAttitude.interactable = true;
                 shinyEffect.Play(0.5f);
-                Debug.Log("チャージ済");
+                //Debug.Log("チャージ済");
             }
         }
 
@@ -148,6 +150,7 @@ public class PlayerController : MonoBehaviour
                 transform.DORotate(proneRotation, 0.25f, RotateMode.WorldAxisAdd);
                 rb.drag = 25.0f;
                 btnChangeAttitude.transform.GetChild(0).DORotate(new Vector3(0, 0, 180), 0.25f);
+                anim.SetBool("Prone", true);
                 break;
 
             case AttitudeType.Prone:
@@ -155,6 +158,7 @@ public class PlayerController : MonoBehaviour
                 transform.DORotate(straightRotation, 0.25f);
                 rb.drag = 0f;
                 btnChangeAttitude.transform.GetChild(0).DORotate(new Vector3(0, 0, 90), 0.25f);
+                anim.SetBool("Prone", false);
                 break;
         }
     }
