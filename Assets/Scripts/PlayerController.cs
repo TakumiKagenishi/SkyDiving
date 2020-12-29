@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using Coffee.UIExtensions;
 
 public class PlayerController : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private Button btnChangeAttitude;
     [SerializeField]
     private Image imgGauge;
+    [SerializeField]
+    private ShinyEffectForUGUI shinyEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +113,8 @@ public class PlayerController : MonoBehaviour
                 attitudeTimer = chargeTime;
                 isCharge = true;
                 btnChangeAttitude.interactable = true;
+                shinyEffect.Play(0.5f);
+                Debug.Log("チャージ済");
             }
         }
 
