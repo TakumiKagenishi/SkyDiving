@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 proneRotation = new Vector3(-90, 0, 0);
     private float attitudeTimer;
     private float chargeTime = 2.0f;
+    private bool isCharge;
     [SerializeField, Header("水しぶきのエフェクト")]
     private GameObject splashEffectPrefab = null;
     [SerializeField, Header("水しぶきのSE")]
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = straightRotation;
         attitudeType = AttitudeType.Straight;
         btnChangeAttitude.onClick.AddListener(ChangeAttitude);
+        btnChangeAttitude.interactable = false;
     }
 
     // Update is called once per frame
@@ -98,13 +100,16 @@ public class PlayerController : MonoBehaviour
             ChangeAttitude();
         }
 
-        if(attitudeType == AttitudeType.Straight)
+        if(isCharge == false && attitudeType == AttitudeType.Straight)
         {
             attitudeTimer += Time.deltaTime;
             imgGauge.DOFillAmount(attitudeTimer / chargeTime, 0.1f);
+            btnChangeAttitude.interactable = false;
             if(attitudeTimer >= chargeTime)
             {
                 attitudeTimer = chargeTime;
+                isCharge = true;
+                btnChangeAttitude.interactable = true;
             }
         }
 
@@ -115,6 +120,8 @@ public class PlayerController : MonoBehaviour
             if(attitudeTimer <= 0)
             {
                 attitudeTimer = 0;
+                btnChangeAttitude.interactable = false;
+                ChangeAttitude();
             }
         }
     }
@@ -127,6 +134,11 @@ public class PlayerController : MonoBehaviour
         switch(attitudeType)
         {
             case AttitudeType.Straight:
+                if(isCharge == false)
+                {
+                    return;
+                }
+                isCharge = false;
                 attitudeType = AttitudeType.Prone;
                 transform.DORotate(proneRotation, 0.25f, RotateMode.WorldAxisAdd);
                 rb.drag = 25.0f;
