@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(inWater)
+        {
+            return;
+        }
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         //Debug.Log(x);
@@ -100,6 +104,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(inWater)
+        {
+            btnChangeAttitude.interactable = false;
+            return;
+        }
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             ChangeAttitude();

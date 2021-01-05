@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text txtDistance;
 
+    [SerializeField]
+    private CameraController cameraController;
+
     private float distance;
 
     private bool isGoal;
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         if (isGoal == true)
         {
+            cameraController.SetDefaultCamera();
             return;
         }
         
