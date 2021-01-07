@@ -96,6 +96,11 @@ public class PlayerController : MonoBehaviour
     /// <returns></returns>
     private IEnumerator OutOfWater()
     {
+        yield return new WaitForSeconds(0.1f);
+        if (attitudeType == AttitudeType.Prone)
+        {
+            ChangeAttitude();
+        }
         yield return new WaitForSeconds(1.0f);
         rb.isKinematic = true;
         transform.eulerAngles = new Vector3(-30, 180, 0);
