@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private ResultPopUp resultPopUp;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     private float distance;
 
     private bool isGoal;
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
             txtDistance.text = 0.ToString("F2");
             cameraController.SetDefaultCamera();
             resultPopUp.DisplayResult();
+            audioManager.PlayBGM(AudioManager.BgmType.GameClear);
         }
 
     }
