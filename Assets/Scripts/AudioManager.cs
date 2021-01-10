@@ -5,11 +5,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField, Header("BGM用オーディオファイル")]
-    private AudioClip[] bgms = null;
+    private AudioClip[] bgms;
 
     private AudioSource audioSource;
 
-    public enum BgmType
+    public enum BGMType
     {
         Main,
         GameClear,
@@ -19,7 +19,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        PlayBGM(BgmType.Main);
+        PlayBGM(BGMType.Main);
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void PlayBGM(BgmType bgmType)
+    public void PlayBGM(BGMType bgmType)
     {
         audioSource.Stop();
         audioSource.clip = bgms[(int)bgmType];
