@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     private Transform limitLeftBottom;
     [SerializeField]
     private Transform limitRightTop;
+    [SerializeField]
+    private FloatingJoystick joystick;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour
         }
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
+        x = joystick.Horizontal;
+        z = joystick.Vertical;
         //Debug.Log(x);
         //Debug.Log(z);
         rb.velocity = new Vector3(x * moveSpeed, -fallSpeed, z * moveSpeed);
