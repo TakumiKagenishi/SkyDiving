@@ -42,6 +42,10 @@ public class PlayerController : MonoBehaviour
     private Image imgGauge;
     [SerializeField]
     private ShinyEffectForUGUI shinyEffect;
+    [SerializeField]
+    private Transform limitLeftBottom;
+    [SerializeField]
+    private Transform limitRightTop;
 
     // Start is called before the first frame update
     void Start()
@@ -115,6 +119,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        LimitMoveArea();
+
         if(Input.GetKeyDown(KeyCode.Space))
         {
             ChangeAttitude();
@@ -176,5 +182,15 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("Prone", false);
                 break;
         }
+    }
+
+    /// <summary>
+    /// 移動範囲の確認と制限
+    /// </summary>
+    private void LimitMoveArea()
+    {
+        float limitX = Mathf.Clamp(transform.position.x, limitLeftBottom.position.x, limitRightTop.position.x);
+        float limitZ = Mathf.Clamp(transform.position.z, limitLeftBottom.position.z, limitRightTop.position.z);
+        transform.position = new Vector3(limitX, transform.position.y, limitZ);
     }
 }
