@@ -19,6 +19,7 @@ public class FlowerCircle : MonoBehaviour
     private float duration;
     [SerializeField, Header("移動距離")]
     private float moovDistance;
+    private GameObject penguin;
 
     // Start is called before the first frame update
     void Start()
