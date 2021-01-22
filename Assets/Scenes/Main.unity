@@ -1553,7 +1553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &856281363
 Transform:
   m_ObjectHideFlags: 0
@@ -1960,13 +1960,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.5645349, y: 0, z: 0, w: 0.82540923}
-  m_LocalPosition: {x: 0, y: 104, z: -3.48}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 107, z: -2.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 68.74, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2969,6 +2969,14 @@ MonoBehaviour:
   cameraController: {fileID: 963194229}
   resultPopUp: {fileID: 960253052}
   audioManager: {fileID: 1390005409}
+  isRandomStaging: 1
+  movingFlowerCirclePercent: 50
+  scalingFlowerCirclePercent: 50
+  flowerCirclePrefab: {fileID: 8898310280035038463, guid: 7f05450ba8752d34f8d6ba5ec2032a4c,
+    type: 3}
+  limitLeftBottom: {fileID: 728095418}
+  limitRightTop: {fileID: 446797020}
+  isGoal: 0
 --- !u!4 &1434461558
 Transform:
   m_ObjectHideFlags: 0
@@ -5536,6 +5544,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277563204052367}
   m_Mesh: {fileID: 4300000, guid: 91b78f2f55768254ba6a9dcaca4e89da, type: 3}
+--- !u!1001 &8616817238461796417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089570909, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089885309, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_Name
+      value: ObstacleFlower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089885309, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5180037635089885311, guid: 30e771298f0b68548bc904e11a633da1,
+        type: 3}
+      propertyPath: octableFlowerSE
+      value: 
+      objectReference: {fileID: 8300000, guid: b09cdf69575bd2f42af4d1df6e0eca6f, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 30e771298f0b68548bc904e11a633da1, type: 3}
 --- !u!137 &8762099337980726297
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -6360,7 +6447,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -6437,6 +6524,7 @@ MonoBehaviour:
   shinyEffect: {fileID: 1633065045}
   limitLeftBottom: {fileID: 728095418}
   limitRightTop: {fileID: 446797020}
+  gameManager: {fileID: 1434461557}
 --- !u!1 &8762099337994326235
 GameObject:
   m_ObjectHideFlags: 0

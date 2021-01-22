@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField, Header("BGM用オーディオファイル")]
     private AudioClip[] bgms;
-
+    
     private AudioSource audioSource;
 
     public enum BGMType

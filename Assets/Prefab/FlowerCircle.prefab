@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 8898310280035038461}
   m_Layer: 0
   m_Name: FlowerCircle
-  m_TagString: Untagged
+  m_TagString: FlowerCircle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -733,9 +733,20 @@ MonoBehaviour:
   boxCollider: {fileID: 8898310278454480452}
   effectPrefab: {fileID: 100010, guid: 214bf6b1f924e43108a92f13c4db31a2, type: 3}
   flowerSE: {fileID: 8300000, guid: 5e25cad28e694f94493c5184a190bc6d, type: 3}
-  isMooving: 1
+  isMoving: 0
   duration: 3
-  moovDistance: 5
+  moveDistance: 5
+  randomMovingPercent: 50
+  durationRange: {x: 2, y: 5}
+  moveDistanceRange: {x: 3, y: 5}
+  flowerSizes:
+  - 1.5
+  - 0.75
+  - 0.5
+  pointRate:
+  - 0.7
+  - 1.5
+  - 3
 --- !u!54 &8898310280035038461
 Rigidbody:
   m_ObjectHideFlags: 0

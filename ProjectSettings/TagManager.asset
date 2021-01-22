@@ -8,6 +8,7 @@ TagManager:
   - Undefined
   - Water
   - FlowerCircle
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -46,7 +46,9 @@ public class PlayerController : MonoBehaviour
     private Transform limitLeftBottom;
     [SerializeField]
     private Transform limitRightTop;
-    //[SerializeField]
+    [SerializeField]
+    private GameManager gameManager;
+    
     //private FloatingJoystick joystick;
 
     // Start is called before the first frame update
@@ -63,7 +65,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(inWater)
+        if(gameManager.isGoal == true)
+        {
+            return;
+        }
+
+        if (inWater)
         {
             return;
         }
@@ -79,18 +86,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Water" && inWater == false)
+        if (col.gameObject.tag == "Water" && inWater == false)
         {
             inWater = true;
             GameObject effect = Instantiate(splashEffectPrefab, transform.position, Quaternion.identity);
-            effect.transform.position = new Vector3(effect.transform.position.x, effect.transform.position.y, effect.transform.position.z -0.5f);
+            effect.transform.position = new Vector3(effect.transform.position.x, effect.transform.position.y, effect.transform.position.z - 0.5f);
             Destroy(effect, 2.0f);
             AudioSource.PlayClipAtPoint(splashSE, transform.position);
             StartCoroutine(OutOfWater());
             //Debug.Log("着水 :" + inWater);
         }
 
-        if(col.gameObject.tag == "FlowerCircle")
+        if (col.gameObject.tag == "FlowerCircle")
         {
             //Debug.Log("花輪ゲット");
             score += col.transform.parent.GetComponent<FlowerCircle>().point;
@@ -117,7 +124,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(inWater)
+        if (inWater)
         {
             btnChangeAttitude.interactable = false;
             return;
@@ -125,17 +132,17 @@ public class PlayerController : MonoBehaviour
 
         LimitMoveArea();
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             ChangeAttitude();
         }
 
-        if(isCharge == false && attitudeType == AttitudeType.Straight)
+        if (isCharge == false && attitudeType == AttitudeType.Straight)
         {
             attitudeTimer += Time.deltaTime;
             imgGauge.DOFillAmount(attitudeTimer / chargeTime, 0.1f);
             btnChangeAttitude.interactable = false;
-            if(attitudeTimer >= chargeTime)
+            if (attitudeTimer >= chargeTime)
             {
                 attitudeTimer = chargeTime;
                 isCharge = true;
@@ -145,11 +152,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(attitudeType == AttitudeType.Prone)
+        if (attitudeType == AttitudeType.Prone)
         {
             attitudeTimer -= Time.deltaTime;
             imgGauge.DOFillAmount(attitudeTimer / chargeTime, 0.1f);
-            if(attitudeTimer <= 0)
+            if (attitudeTimer <= 0)
             {
                 attitudeTimer = 0;
                 btnChangeAttitude.interactable = false;
@@ -163,10 +170,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void ChangeAttitude()
     {
-        switch(attitudeType)
+        switch (attitudeType)
         {
             case AttitudeType.Straight:
-                if(isCharge == false)
+                if (isCharge == false)
                 {
                     return;
                 }
@@ -196,5 +203,33 @@ public class PlayerController : MonoBehaviour
         float limitX = Mathf.Clamp(transform.position.x, limitLeftBottom.position.x, limitRightTop.position.x);
         float limitZ = Mathf.Clamp(transform.position.z, limitLeftBottom.position.z, limitRightTop.position.z);
         transform.position = new Vector3(limitX, transform.position.y, limitZ);
+    }
+
+    /// <summary>
+    /// キャラの落下と移動を一時停止
+    /// </summary>
+    public void StopMove()
+    {
+        rb.isKinematic = true;
+        rb.velocity = Vector3.zero;
+    }
+
+    /// <summary>
+    /// キャラの落下と移動を再開
+    /// </summary>
+    public void ResumeMove()
+    {
+        rb.isKinematic = false;
+        rb.velocity = new Vector3(0, -fallSpeed, 0);
+    }
+
+    /// <summary>
+    /// スコアを半分にする
+    /// </summary>
+    public void HalveScore()
+    {
+        score = Mathf.CeilToInt(score * 0.5f);
+        Debug.Log("スコア半分 : " + score);
+        txtScore.text = score.ToString();
     }
 }
