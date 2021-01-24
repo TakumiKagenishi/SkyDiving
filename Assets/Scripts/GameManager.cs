@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class GameManager : MonoBehaviour
 
     public bool isGoal;
 
+    public Slider sliderAltimeter;
+
+    private float startPos;
+
     // Update is called once per frame
     void Update()
     {
@@ -55,8 +60,8 @@ public class GameManager : MonoBehaviour
         
         distance = player.transform.position.y - goal.transform.position.y;
         //Debug.Log(distance.ToString("F2"));
-
         txtDistance.text = distance.ToString("F2");
+        sliderAltimeter.DOValue(distance / startPos, 0.1f);
 
         if (distance <= 0)
         {
@@ -70,6 +75,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Start()
     {
+        startPos = player.transform.position.y;
+        player.SetUpPlayer();
+        player.StopMove();
         isGoal = true;
         
         if(isRandomStaging)
@@ -78,11 +86,12 @@ public class GameManager : MonoBehaviour
         }
 
         isGoal = false;
+        player.ResumeMove();
         Debug.Log(isGoal);
     }
 
     /// <summary>
-    /// 
+    /// ランダムで花輪を生成してステージ作成
     /// </summary>
     /// <returns></returns>
     private IEnumerator CreateRandomStage()

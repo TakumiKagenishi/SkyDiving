@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     //private FloatingJoystick joystick;
 
     // Start is called before the first frame update
-    void Start()
+    public void SetUpPlayer()
     {
         rb = GetComponent<Rigidbody>();
         transform.eulerAngles = straightRotation;
@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
                 transform.DORotate(proneRotation, 0.25f, RotateMode.WorldAxisAdd);
                 rb.drag = 25.0f;
                 btnChangeAttitude.transform.GetChild(0).DORotate(new Vector3(0, 0, 180), 0.25f);
+                gameManager.sliderAltimeter.transform.GetChild(2).GetChild(0).DORotate(new Vector3(0, 0, 90), 0.25f);
                 anim.SetBool("Prone", true);
                 break;
 
@@ -190,6 +191,7 @@ public class PlayerController : MonoBehaviour
                 transform.DORotate(straightRotation, 0.25f);
                 rb.drag = 0f;
                 btnChangeAttitude.transform.GetChild(0).DORotate(new Vector3(0, 0, 90), 0.25f);
+                gameManager.sliderAltimeter.transform.GetChild(2).GetChild(0).DORotate(new Vector3(0, 0, 180), 0.25f);
                 anim.SetBool("Prone", false);
                 break;
         }
