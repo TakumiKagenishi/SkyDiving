@@ -42,6 +42,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform limitRightTop;
 
+    [SerializeField]
+    private SkyboxChanger skyboxChanger;
+
     private float distance;
 
     public bool isGoal;
@@ -50,6 +53,10 @@ public class GameManager : MonoBehaviour
 
     private float startPos;
 
+    private void Awake()
+    {
+        skyboxChanger.ChangeSkybox();
+    }
     // Update is called once per frame
     void Update()
     {

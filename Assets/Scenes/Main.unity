@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -510,6 +510,55 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160950117}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &173732947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 173732949}
+  - component: {fileID: 173732948}
+  m_Layer: 0
+  m_Name: SkyboxChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &173732948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173732947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc13478d2180df4b832d3b4984a0b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyboxMaterials:
+  - {fileID: 2100000, guid: 1700716a8dd8948cf8c66ea34a2786d5, type: 2}
+  - {fileID: 2100000, guid: d3823126980dd98479f7761e6d47338a, type: 2}
+  - {fileID: 2100000, guid: 7c86d4abbd33b564b9e773aceadb8572, type: 2}
+  - {fileID: 2100000, guid: 6e00f8b39315691449f256740a5cb862, type: 2}
+  skyboxMaterialsIndex: 999
+--- !u!4 &173732949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173732947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224377665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,7 +2150,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.3726415, g: 0.8079906, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -3322,6 +3371,7 @@ MonoBehaviour:
     type: 3}
   limitLeftBottom: {fileID: 728095418}
   limitRightTop: {fileID: 446797020}
+  skyboxChanger: {fileID: 173732948}
   isGoal: 0
   sliderAltimeter: {fileID: 977978712}
 --- !u!4 &1434461558
