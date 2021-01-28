@@ -234,4 +234,21 @@ public class PlayerController : MonoBehaviour
         Debug.Log("スコア半分 : " + score);
         txtScore.text = score.ToString();
     }
+
+    /// <summary>
+    /// 落下速度を減衰させながら元に戻す
+    /// </summary>
+    /// <param name="airResistance"></param>
+    public void DampingDrag(float airResistance)
+    {
+        rb.drag = airResistance;
+        DOTween.To(() => rb.drag, (x) => rb.drag = x, 0, 3.0f).OnComplete(() =>
+        {
+            if (transform.rotation.x != 1)
+            {
+                transform.DORotate(straightRotation, 0.25f);
+            }
+        });
+    }
 }
+
